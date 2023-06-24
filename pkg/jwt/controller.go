@@ -3,14 +3,22 @@ package jwt
 import (
 	"github.com/edwinpaye/gots/pkg/utils"
 	"github.com/gofiber/fiber/v2"
+	"gorm.io/gorm"
 )
 
+type handler struct {
+	DB *gorm.DB
+}
+
 // func for describe group of public routes.
-func TokenRoutes(a *fiber.App) {
+func TokenRoutes(a *fiber.App, db *gorm.DB) {
+	h := &handler{
+		DB: db,
+	}
 
 	route := a.Group("/token")
-
 	route.Get("/new", GetNewAccessToken) // create a new access tokens
+	route.Post("/", h.SignIn)            // signIn
 }
 
 // GetNewAccessToken method for create a new access token.

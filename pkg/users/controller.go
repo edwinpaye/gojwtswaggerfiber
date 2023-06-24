@@ -16,9 +16,9 @@ func RegisterRoutes(app *fiber.App, db *gorm.DB) {
 	}
 
 	routes := app.Group("/users")
-	// routes.Post("/", h.AddBook)
+	routes.Post("/", midleware.JWTProtected(), h.AddUser)
 	routes.Get("/", midleware.JWTProtected(), h.GetUsers)
-	// routes.Get("/:id", h.GetBook)
-	// routes.Put("/:id", h.UpdateBook)
-	// routes.Delete("/:id", h.DeleteBook)
+	routes.Get("/:id", midleware.JWTProtected(), h.GetUser)
+	// routes.Put("/:id", midleware.JWTProtected(), h.UpdateUser)
+	routes.Delete("/:id", midleware.JWTProtected(), h.DeleteUser)
 }

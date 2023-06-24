@@ -18,6 +18,14 @@ definitions:
       title:
         type: string
     type: object
+  jwt.SignInDTO:
+    properties:
+      email:
+        type: string
+      password:
+        minLength: 3
+        type: string
+    type: object
   models.Book:
     properties:
       author:
@@ -33,10 +41,33 @@ definitions:
     properties:
       author:
         type: string
+      created_at:
+        type: string
       description:
+        type: string
+      email:
+        description: ID        uuid.UUID `db:"id" json:"id" validate:"required,uuid"`
         type: string
       id:
         type: integer
+      password:
+        minLength: 3
+        type: string
+      title:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  users.AddUserRequestBody:
+    properties:
+      author:
+        type: string
+      description:
+        type: string
+      email:
+        type: string
+      password:
+        type: string
       title:
         type: string
     type: object
@@ -164,6 +195,28 @@ paths:
       summary: update book
       tags:
       - Books
+  /token:
+    post:
+      consumes:
+      - application/json
+      description: SignIn a user.
+      parameters:
+      - description: Credentials Data
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/jwt.SignInDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: object
+      summary: signIn a user
+      tags:
+      - Token
   /token/new:
     get:
       consumes:
@@ -196,6 +249,74 @@ paths:
       security:
       - ApiKeyAuth: []
       summary: get all exists users
+      tags:
+      - Users
+    post:
+      consumes:
+      - application/json
+      description: Create a new user.
+      parameters:
+      - description: User Data
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/users.AddUserRequestBody'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.User'
+      security:
+      - ApiKeyAuth: []
+      summary: create a new user
+      tags:
+      - Users
+  /users/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete user by given ID.
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: no content
+          schema:
+            type: ""
+      security:
+      - ApiKeyAuth: []
+      summary: delete user by given ID
+      tags:
+      - Users
+    get:
+      consumes:
+      - application/json
+      description: Get user by given ID.
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.User'
+      security:
+      - ApiKeyAuth: []
+      summary: get user by given ID
       tags:
       - Users
 securityDefinitions:

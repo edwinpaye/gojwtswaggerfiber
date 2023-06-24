@@ -62,7 +62,7 @@ func main() {
 
 	books.RegisterRoutes(app, db)
 	users.RegisterRoutes(app, db)
-	jwt.TokenRoutes(app)
+	jwt.TokenRoutes(app, db)
 
 	app.Listen(c.Port)
 
