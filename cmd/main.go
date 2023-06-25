@@ -1,9 +1,9 @@
 package main
 
 import (
+	"html/template"
 	"log"
 
-	// swagger "github.com/arsmn/fiber-swagger/v2"
 	_ "github.com/edwinpaye/gots/docs"
 	"github.com/edwinpaye/gots/pkg/books"
 	"github.com/edwinpaye/gots/pkg/common/config"
@@ -25,7 +25,7 @@ import (
 // @contact.email test@mail.com
 // @license.name Apache 2.0
 // @license.url http://www.apache.org/licenses/LICENSE-2.0.html
-// @securityDefinitions.apikey ApiKeyAuth
+// @securityDefinitions.apikey JWT
 // @in header
 // @name Authorization
 func main() {
@@ -39,22 +39,20 @@ func main() {
 	db := db.Init(c.DBUrl)
 
 	midleware.FiberMiddleware(app)
-	// app.Group("/swagger")
-	// app.Get("*", swagger.HandlerDefault)
-	app.Get("/swagger/*", swagger.HandlerDefault)
-	// app.Get("/swagger/*", swagger.New(swagger.Config{ // custom
-	// 	URL:         "http://example.com/doc.json",
-	// 	DeepLinking: false,
-	// 	// Expand ("list") or Collapse ("none") tag groups by default
-	// 	DocExpansion: "none",
-	// 	// Prefill OAuth ClientId on Authorize popup
-	// 	OAuth: &swagger.OAuthConfig{
-	// 		AppName:  "OAuth Provider",
-	// 		ClientId: "21bb4edc-05a7-4afc-86f1-2e151e4ba6e2",
-	// 	},
-	// 	// Ability to change OAuth2 redirect uri location
-	// 	OAuth2RedirectUrl: "http://localhost:3080/swagger/oauth2-redirect.html",
-	// }))
+	// app.Get("/swagger/*", swagger.HandlerDefault)
+	app.Get("/swagger/*", swagger.New(swagger.Config{ // custom
+		DefaultModelExpandDepth: 0,
+		Filter:                  swagger.FilterConfig{Enabled: true},
+		PersistAuthorization:    true,
+		DocExpansion:            "none",
+		CustomStyle: template.CSS(`
+			h1,h2,h3,h4,h5,a,pre { color: #8c8cfa !important; text-color:white !important; }
+			body { background-color: #000000; text-color: white; }
+			div, span, { color: white !important; text-color: white !important; }
+			.opblock, .models { background-color : gray !important; }
+			.opblock-summary-method { border-color: black !important; }
+		`),
+	}))
 
 	app.Get("/", func(ctx *fiber.Ctx) error {
 		return ctx.Status(fiber.StatusOK).SendString(c.Port)

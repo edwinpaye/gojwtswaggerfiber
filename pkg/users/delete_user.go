@@ -13,7 +13,7 @@ import (
 // @Produce json
 // @Param id path string true "User ID"
 // @Success 204 {} status "no content"
-// @Security ApiKeyAuth
+// @Security JWT
 // @Router /users/{id} [delete]
 func (h handler) DeleteUser(c *fiber.Ctx) error {
 	id := c.Params("id")

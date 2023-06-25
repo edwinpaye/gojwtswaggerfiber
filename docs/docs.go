@@ -52,7 +52,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
+                        "JWT": []
                     }
                 ],
                 "description": "Create a new book.",
@@ -121,7 +121,7 @@ const docTemplate = `{
             "put": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
+                        "JWT": []
                     }
                 ],
                 "description": "Update book.",
@@ -165,7 +165,7 @@ const docTemplate = `{
             "delete": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
+                        "JWT": []
                     }
                 ],
                 "description": "Delete book by given ID.",
@@ -259,7 +259,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
+                        "JWT": []
                     }
                 ],
                 "description": "Get all exists users.",
@@ -288,7 +288,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
+                        "JWT": []
                     }
                 ],
                 "description": "Create a new user.",
@@ -327,7 +327,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
+                        "JWT": []
                     }
                 ],
                 "description": "Get user by given ID.",
@@ -362,7 +362,7 @@ const docTemplate = `{
             "delete": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
+                        "JWT": []
                     }
                 ],
                 "description": "Delete user by given ID.",
@@ -507,7 +507,7 @@ const docTemplate = `{
         }
     },
     "securityDefinitions": {
-        "ApiKeyAuth": {
+        "JWT": {
             "type": "apiKey",
             "name": "Authorization",
             "in": "header"

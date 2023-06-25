@@ -13,7 +13,7 @@ import (
 // @Produce json
 // @Param id path string true "User ID"
 // @Success 200 {object} models.User
-// @Security ApiKeyAuth
+// @Security JWT
 // @Router /users/{id} [get]
 func (h handler) GetUser(c *fiber.Ctx) error {
 	id := c.Params("id")

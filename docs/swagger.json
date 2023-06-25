@@ -45,7 +45,7 @@
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
+                        "JWT": []
                     }
                 ],
                 "description": "Create a new book.",
@@ -114,7 +114,7 @@
             "put": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
+                        "JWT": []
                     }
                 ],
                 "description": "Update book.",
@@ -158,7 +158,7 @@
             "delete": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
+                        "JWT": []
                     }
                 ],
                 "description": "Delete book by given ID.",
@@ -252,7 +252,7 @@
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
+                        "JWT": []
                     }
                 ],
                 "description": "Get all exists users.",
@@ -281,7 +281,7 @@
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
+                        "JWT": []
                     }
                 ],
                 "description": "Create a new user.",
@@ -320,7 +320,7 @@
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
+                        "JWT": []
                     }
                 ],
                 "description": "Get user by given ID.",
@@ -355,7 +355,7 @@
             "delete": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
+                        "JWT": []
                     }
                 ],
                 "description": "Delete user by given ID.",
@@ -500,7 +500,7 @@
         }
     },
     "securityDefinitions": {
-        "ApiKeyAuth": {
+        "JWT": {
             "type": "apiKey",
             "name": "Authorization",
             "in": "header"

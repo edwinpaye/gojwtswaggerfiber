@@ -22,7 +22,7 @@ type AddBookRequestBody struct {
 // @Param book body AddBookRequestBody true "Book Data"
 // Param book_attrs body models.BookAttrs true "Book attributes"
 // @Success 201 {object} models.Book
-// @Security ApiKeyAuth
+// @Security JWT
 // @Router /books [post]
 func (h handler) AddBook(c *fiber.Ctx) error {
 	body := AddBookRequestBody{}

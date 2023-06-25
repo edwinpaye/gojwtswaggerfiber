@@ -12,7 +12,7 @@ import (
 // @Accept json
 // @Produce json
 // @Success 200 {array} models.User
-// @Security ApiKeyAuth
+// @Security JWT
 // @Router /users [get]
 func (h handler) GetUsers(c *fiber.Ctx) error {
 	var users []models.User

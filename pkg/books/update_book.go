@@ -24,7 +24,7 @@ type UpdateBookRequestBody struct {
 // Param book_status body integer true "Book status"
 // Param book_attrs body models.BookAttrs true "Book attributes"
 // @Success 200 {object} models.Book
-// @Security ApiKeyAuth
+// @Security JWT
 // @Router /books/{id} [put]
 func (h handler) UpdateBook(c *fiber.Ctx) error {
 	id := c.Params("id")

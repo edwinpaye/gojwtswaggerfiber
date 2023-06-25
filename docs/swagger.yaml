@@ -120,7 +120,7 @@ paths:
           schema:
             $ref: '#/definitions/models.Book'
       security:
-      - ApiKeyAuth: []
+      - JWT: []
       summary: create a new book
       tags:
       - Books
@@ -143,7 +143,7 @@ paths:
           schema:
             type: ""
       security:
-      - ApiKeyAuth: []
+      - JWT: []
       summary: delete book by given ID
       tags:
       - Books
@@ -191,7 +191,7 @@ paths:
           schema:
             $ref: '#/definitions/models.Book'
       security:
-      - ApiKeyAuth: []
+      - JWT: []
       summary: update book
       tags:
       - Books
@@ -247,7 +247,7 @@ paths:
               $ref: '#/definitions/models.User'
             type: array
       security:
-      - ApiKeyAuth: []
+      - JWT: []
       summary: get all exists users
       tags:
       - Users
@@ -270,7 +270,7 @@ paths:
           schema:
             $ref: '#/definitions/models.User'
       security:
-      - ApiKeyAuth: []
+      - JWT: []
       summary: create a new user
       tags:
       - Users
@@ -293,7 +293,7 @@ paths:
           schema:
             type: ""
       security:
-      - ApiKeyAuth: []
+      - JWT: []
       summary: delete user by given ID
       tags:
       - Users
@@ -315,12 +315,12 @@ paths:
           schema:
             $ref: '#/definitions/models.User'
       security:
-      - ApiKeyAuth: []
+      - JWT: []
       summary: get user by given ID
       tags:
       - Users
 securityDefinitions:
-  ApiKeyAuth:
+  JWT:
     in: header
     name: Authorization
     type: apiKey

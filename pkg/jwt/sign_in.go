@@ -1,6 +1,9 @@
 package jwt
 
 import (
+	"encoding/json"
+	"log"
+
 	"github.com/edwinpaye/gots/pkg/common/models"
 	"github.com/edwinpaye/gots/pkg/utils"
 	"github.com/gofiber/fiber/v2"
@@ -32,10 +35,13 @@ func (h handler) SignIn(c *fiber.Ctx) error {
 	}
 
 	var entity models.User
-	email := &Email{email: body.Email}
+	// email := &Email{email: body.Email}
+	var user = models.User{Email: body.Email}
+	res2B, _ := json.Marshal(body)
+	log.Default().Println(string(res2B))
 
 	// var password = body.Password
-	if result := h.DB.First(&entity, email); result.Error != nil {
+	if result := h.DB.First(&entity, user); result.Error != nil {
 		return fiber.NewError(fiber.StatusNotFound, result.Error.Error())
 	}
 

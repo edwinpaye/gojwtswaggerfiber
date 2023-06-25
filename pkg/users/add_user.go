@@ -22,7 +22,7 @@ type AddUserRequestBody struct {
 // @Produce json
 // @Param user body AddUserRequestBody true "User Data"
 // @Success 201 {object} models.User
-// @Security ApiKeyAuth
+// @Security JWT
 // @Router /users [post]
 func (h handler) AddUser(c *fiber.Ctx) error {
 	body := AddUserRequestBody{}

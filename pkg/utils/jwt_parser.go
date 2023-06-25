@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"log"
 	"os"
 	"strings"
 
@@ -49,7 +50,8 @@ func extractToken(c *fiber.Ctx) string {
 func verifyToken(c *fiber.Ctx) (*jwt.Token, error) {
 	tokenString := extractToken(c)
 
-	token, err := jwt.Parse(tokenString, jwtKeyFunc)
+	log.Default().Println("Bearer " + tokenString)
+	token, err := jwt.Parse("Bearer "+tokenString, jwtKeyFunc)
 	if err != nil {
 		return nil, err
 	}

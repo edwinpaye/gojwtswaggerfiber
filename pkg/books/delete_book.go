@@ -13,7 +13,7 @@ import (
 // @Produce json
 // @Param id path string true "Book ID"
 // @Success 204 {} status "no content"
-// @Security ApiKeyAuth
+// @Security JWT
 // @Router /books/{id} [delete]
 func (h handler) DeleteBook(c *fiber.Ctx) error {
 	id := c.Params("id")
