@@ -11,6 +11,7 @@ import (
 	"github.com/edwinpaye/gots/pkg/jwt"
 	"github.com/edwinpaye/gots/pkg/midleware"
 	"github.com/edwinpaye/gots/pkg/users"
+	"github.com/edwinpaye/gots/pkg/cars"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/swagger"
 )
@@ -28,6 +29,7 @@ import (
 // @securityDefinitions.apikey JWT
 // @in header
 // @name Authorization
+// @scheme bearer
 func main() {
 	c, err := config.LoadConfig()
 
@@ -60,6 +62,7 @@ func main() {
 
 	books.RegisterRoutes(app, db)
 	users.RegisterRoutes(app, db)
+	cars.RegisterRoutes(app, db)
 	jwt.TokenRoutes(app, db)
 
 	app.Listen(c.Port)

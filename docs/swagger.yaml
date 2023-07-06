@@ -18,6 +18,17 @@ definitions:
       title:
         type: string
     type: object
+  cars.Car:
+    properties:
+      description:
+        type: string
+      id:
+        type: integer
+      model:
+        type: string
+      placa:
+        type: string
+    type: object
   jwt.SignInDTO:
     properties:
       email:
@@ -195,6 +206,23 @@ paths:
       summary: update book
       tags:
       - Books
+  /cars:
+    get:
+      consumes:
+      - application/json
+      description: Get all exists cars.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/cars.Car'
+            type: array
+      summary: get all exists cars
+      tags:
+      - Cars
   /token:
     post:
       consumes:

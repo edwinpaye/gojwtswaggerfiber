@@ -198,6 +198,32 @@ const docTemplate = `{
                 }
             }
         },
+        "/cars": {
+            "get": {
+                "description": "Get all exists cars.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Cars"
+                ],
+                "summary": "get all exists cars",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/cars.Car"
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/token": {
             "post": {
                 "description": "SignIn a user.",
@@ -421,6 +447,23 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "cars.Car": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "model": {
+                    "type": "string"
+                },
+                "placa": {
                     "type": "string"
                 }
             }

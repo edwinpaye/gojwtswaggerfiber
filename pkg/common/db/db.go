@@ -4,6 +4,7 @@ import (
 	"log"
 
 	"github.com/edwinpaye/gots/pkg/common/models"
+	"github.com/edwinpaye/gots/pkg/cars"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -17,6 +18,7 @@ func Init(url string) *gorm.DB {
 
 	db.AutoMigrate(&models.Book{})
 	db.AutoMigrate(&models.User{})
+	db.AutoMigrate(&cars.Car{})
 
 	return db
 }
